@@ -55,6 +55,19 @@ Cloudinary (image storage)
 
 Git & GitHub
 
+🔑 Environment Variables
+
+Create .env file in Backend folder
+
+Example:
+
+PORT=5000
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
+CLOUDINARY_NAME=your_cloudinary_name
+CLOUDINARY_KEY=your_cloudinary_key
+CLOUDINARY_SECRET=your_cloudinary_secret
+
 📂 Project Structure
 
 Show-Time
