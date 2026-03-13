@@ -5,38 +5,25 @@ It also includes an admin dashboard for managing movies, events, artists, and ac
 
 🚀 Features
 👤 User Features
-
 Browse latest movies
-
 View upcoming events
-
 Explore artists
-
 Seat booking system
-
 OTP based authentication
-
 User dashboard
-
 Protected routes
 
 🛠 Admin Features
 
 Admin dashboard
-
 Add / Edit / Delete Movies
-
 Manage Events
-
 Manage Artists
-
 Activity management
-
 View booking stats
 
 🛠 Tech Stack
 Frontend
-
 React.js
 React Router
 Context API
