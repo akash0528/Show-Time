@@ -1,16 +1,74 @@
-# React + Vite
+🎬 Show-Time (MERN Stack Movie & Event Booking Platform)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Show-Time is a full-stack MERN application where users can browse movies, events, and artists, and book seats online.
+It also includes an admin dashboard for managing movies, events, artists, and activities.
 
-Currently, two official plugins are available:
+🚀 Features
+👤 User Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Browse latest movies
 
-## React Compiler
+View upcoming events
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Explore artists
 
-## Expanding the ESLint configuration
+Seat booking system
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+OTP based authentication
+
+User dashboard
+
+Protected routes
+
+🛠 Admin Features
+
+Admin dashboard
+
+Add / Edit / Delete Movies
+
+Manage Events
+
+Manage Artists
+
+Activity management
+
+View booking stats
+
+🛠 Tech Stack
+Frontend
+
+React.js
+React Router
+Context API
+Axios
+Vite
+
+Backend
+Node.js
+Express.js
+MongoDB
+JWT Authentication
+Multer (file uploads)
+Other Tools
+
+Cloudinary (image storage)
+
+Git & GitHub
+
+📂 Project Structure
+
+Show-Time
+├── Backend
+│ ├── Controller
+│ ├── Middleware
+│ ├── Model
+│ ├── Routes
+│ └── Services
+│
+├── Frontend
+│ ├── src
+│ ├── assets
+│ └── components
+│
+├── README.md
+└── .gitignore
