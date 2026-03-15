@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -8,7 +8,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/auth/bookings", {
+        const res = await axios.get("/auth/bookings", {
           withCredentials: true,
         });
         setBooking(res.data);

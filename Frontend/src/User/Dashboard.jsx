@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import UserImg from "../assets/Userimg.png";
 import AuthContext from "../Context/AuthContext";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { toast } from "react-toastify";
 
 const Sidebar = ({ closeSidebar, isOpen }) => {
@@ -45,16 +45,12 @@ const Sidebar = ({ closeSidebar, isOpen }) => {
     const loadingToast = toast.loading("Updating image..");
     try {
       // Backend url for update avatar
-      const res = await axios.put(
-        "http://localhost:5000/auth/updated-avatar",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true,
+      const res = await axios.put("/auth/updated-avatar", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
-      );
+        withCredentials: true,
+      });
 
       updateUser(res.data.updatedUser); // context update
 

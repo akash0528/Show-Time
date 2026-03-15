@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import axios from "../../../Api/axiosConfig";
 import {
   AiOutlineClose,
   AiOutlineCloudUpload,
@@ -96,7 +96,7 @@ const AddMovies = () => {
       data.append("theatres", JSON.stringify(theatres));
       data.append("image", posterFile);
 
-      await axios.post("http://localhost:5000/api/admin/movie", data, {
+      await axios.post("/api/admin/movie", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -138,7 +138,7 @@ const AddMovies = () => {
 
           <div
             onClick={() => fileInputRef.current.click()}
-            className={`group relative w-full aspect-[2/3] rounded-2xl border-2 border-dashed transition-all cursor-pointer overflow-hidden flex items-center justify-center ${
+            className={`group relative w-full aspect-2/3 rounded-2xl border-2 border-dashed transition-all cursor-pointer overflow-hidden flex items-center justify-center ${
               preview
                 ? "border-indigo-500"
                 : "border-zinc-800 hover:border-indigo-500 hover:bg-indigo-500/5"

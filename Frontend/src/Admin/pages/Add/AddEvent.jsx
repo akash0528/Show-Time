@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../Api/axiosConfig";
 import { toast } from "react-toastify";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
@@ -14,11 +14,11 @@ const AddEvent = () => {
     location: "",
     date: "",
     price: "",
-    eventDetail:"",
-    timing:"",
-    eventType:"",
-    duration:"",
-    language:""
+    eventDetail: "",
+    timing: "",
+    eventType: "",
+    duration: "",
+    language: "",
   });
 
   // image file
@@ -74,12 +74,10 @@ const AddEvent = () => {
 
       data.append("image", posterFile);
 
-      await axios.post(
-        "http://localhost:5000/api/admin/events",
-        data,
-        { headers: { "Content-Type": "multipart/form-data" },
-      withCredentials:true }
-      );
+      await axios.post("/api/admin/events", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
 
       toast.update(loadingToast, {
         render: "Event Created Successfully!",
@@ -111,15 +109,25 @@ const AddEvent = () => {
 
         {/* INPUTS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {["title", "location", "date", "price","timing","eventDetail","eventType","language","duration"].map((field) => (
+          {[
+            "title",
+            "location",
+            "date",
+            "price",
+            "timing",
+            "eventDetail",
+            "eventType",
+            "language",
+            "duration",
+          ].map((field) => (
             <input
               key={field}
               type={
                 field === "date"
                   ? "date"
                   : field === "price"
-                  ? "number"
-                  : "text"
+                    ? "number"
+                    : "text"
               }
               name={field}
               value={formData[field]}

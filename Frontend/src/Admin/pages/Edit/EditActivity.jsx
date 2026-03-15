@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../Api/axiosConfig";
 import { toast } from "react-toastify";
 import {
   AiOutlineArrowLeft,
@@ -34,11 +34,9 @@ const EditActivity = () => {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/admin/activity/${id}`,{
-            withCredentials:true
-          } 
-        );
+        const res = await axios.get(`/api/admin/activity/${id}`, {
+          withCredentials: true,
+        });
 
         const activity = res.data.activity || res.data;
 
@@ -106,12 +104,10 @@ const EditActivity = () => {
         }
       });
 
-      const res = await axios.put(
-        `http://localhost:5000/api/admin/activity/${id}`,
-        data,
-        { headers: { "Content-Type": "multipart/form-data" },
-      withCredentials:true }
-      );
+      const res = await axios.put(`/api/admin/activity/${id}`, data, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
 
       toast.success(res.data.message || "Updated Successfully");
       navigate("/admin/activity");
@@ -128,7 +124,6 @@ const EditActivity = () => {
   return (
     <div className="min-h-screen bg-[#080808] text-zinc-300 p-6">
       <div className="max-w-6xl mx-auto">
-
         {/* HEADER */}
         <header className="flex justify-between items-center mb-8 border-b border-white/5 pb-6">
           <button
@@ -148,7 +143,6 @@ const EditActivity = () => {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-
           {/* IMAGE */}
           <div className="lg:col-span-3">
             <div className="relative w-full max-w-60 mx-auto rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 group">
@@ -174,12 +168,41 @@ const EditActivity = () => {
           {/* FORM */}
           <div className="lg:col-span-9 bg-zinc-900/30 p-8 rounded-3xl border border-white/5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-              <input name="title" value={formData.title} onChange={handleChange} placeholder="Title" className="input" />
-              <input name="location" value={formData.location} onChange={handleChange} placeholder="Location" className="input" />
-              <input name="ageLimits" value={formData.ageLimits} onChange={handleChange} placeholder="Age Limits" className="input" />
-              <input name="timing" value={formData.timing} onChange={handleChange} placeholder="Timing" className="input" />
-              <input name="duration" value={formData.duration} onChange={handleChange} placeholder="Duration" className="input" />
+              <input
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                placeholder="Title"
+                className="input"
+              />
+              <input
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                placeholder="Location"
+                className="input"
+              />
+              <input
+                name="ageLimits"
+                value={formData.ageLimits}
+                onChange={handleChange}
+                placeholder="Age Limits"
+                className="input"
+              />
+              <input
+                name="timing"
+                value={formData.timing}
+                onChange={handleChange}
+                placeholder="Timing"
+                className="input"
+              />
+              <input
+                name="duration"
+                value={formData.duration}
+                onChange={handleChange}
+                placeholder="Duration"
+                className="input"
+              />
 
               {/* DATE */}
               <input
@@ -200,7 +223,14 @@ const EditActivity = () => {
                 className="input"
               />
 
-              <input name="price" type="number" value={formData.price} onChange={handleChange} placeholder="Price" className="input" />
+              <input
+                name="price"
+                type="number"
+                value={formData.price}
+                onChange={handleChange}
+                placeholder="Price"
+                className="input"
+              />
 
               <textarea
                 rows={3}
@@ -225,7 +255,6 @@ const EditActivity = () => {
               </button>
             </div>
           </div>
-
         </div>
       </div>
 

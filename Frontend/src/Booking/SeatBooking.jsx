@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
@@ -17,7 +17,7 @@ const SeatBooking = () => {
   const { user } = useContext(AuthContext);
   const fetchMovies = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/movies/${id}`);
+      const res = await axios.get(`/api/movies/${id}`);
       setMovieDetail(res.data);
     } catch (error) {
       toast.error("Library sync failed");
@@ -46,7 +46,7 @@ const SeatBooking = () => {
     }
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/bookings",
+        "/auth/bookings",
         {
           item: id,
           itemType: "AdminMovies",

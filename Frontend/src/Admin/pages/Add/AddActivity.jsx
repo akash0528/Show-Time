@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../Api/axiosConfig";
 import { toast } from "react-toastify";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
@@ -14,9 +14,9 @@ const AddActivity = () => {
     location: "",
     date: "",
     price: "",
-    ageLimits:"",
-    duration:"",
-    timing:"",
+    ageLimits: "",
+    duration: "",
+    timing: "",
   });
 
   // image file
@@ -72,12 +72,10 @@ const AddActivity = () => {
 
       data.append("image", posterFile);
 
-      await axios.post(
-        "http://localhost:5000/api/admin/activity", 
-        data,
-        { headers: { "Content-Type": "multipart/form-data"},
-      withCredentials:true }
-      );
+      await axios.post("/api/admin/activity", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
 
       toast.update(loadingToast, {
         render: "Event Created Successfully!",
@@ -109,67 +107,69 @@ const AddActivity = () => {
 
         {/* INPUTS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         {["title", "location", "price", "ageLimits", "duration"].map((field) => (
-    <input
-      key={field}
-      type="text"
-      name={field}
-      value={formData[field]}
-      onChange={handleInputChange}
-      placeholder={field}
-      className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
-      required
-    />
-  ))}
+          {["title", "location", "price", "ageLimits", "duration"].map(
+            (field) => (
+              <input
+                key={field}
+                type="text"
+                name={field}
+                value={formData[field]}
+                onChange={handleInputChange}
+                placeholder={field}
+                className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
+                required
+              />
+            ),
+          )}
 
-  {/* Date Type Select */}
-  <select
-    name="dateType"
-    value={formData.dateType}
-    onChange={handleInputChange}
-    className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-gray-500"
-  >
-    <option value="single">Single Date</option>
-    <option value="daily">Daily</option>
-    <option value="custom">Custom</option>
-  </select>
+          {/* Date Type Select */}
+          <select
+            name="dateType"
+            value={formData.dateType}
+            onChange={handleInputChange}
+            className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-gray-500"
+          >
+            <option value="single">Single Date</option>
+            <option value="daily">Daily</option>
+            <option value="custom">Custom</option>
+          </select>
 
-  {/* Conditional Inputs */}
+          {/* Conditional Inputs */}
 
-  {formData.dateType === "single" && (
-    <input
-      type="date"
-      name="date"
-      value={formData.date}
-      onChange={handleInputChange}
-      className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
-      required
-    />
-  )}
+          {formData.dateType === "single" && (
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleInputChange}
+              className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
+              required
+            />
+          )}
 
-  {formData.dateType === "daily" && (
-    <input
-      type="text"
-      name="timing"
-      placeholder="12:30 PM to 11:30 PM"
-      value={formData.timing}
-      onChange={handleInputChange}
-      className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
-      required
-    />
-  )}
+          {formData.dateType === "daily" && (
+            <input
+              type="text"
+              name="timing"
+              placeholder="12:30 PM to 11:30 PM"
+              value={formData.timing}
+              onChange={handleInputChange}
+              className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
+              required
+            />
+          )}
 
-  {formData.dateType === "custom" && (
-    <input
-      type="text"
-      name="customDateText"
-      placeholder="Fri, 23 Feb onwards"
-      value={formData.customDateText}
-      onChange={handleInputChange}
-      className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
-      required
-    />
-  )}
+          {formData.dateType === "custom" && (
+            <input
+              type="text"
+              name="customDateText"
+              placeholder="Fri, 23 Feb onwards"
+              value={formData.customDateText}
+              onChange={handleInputChange}
+              className="w-full bg-transparent border border-white/20 rounded-xl px-4 py-3 text-white"
+              required
+            />
+          )}
         </div>
 
         {/* DESCRIPTION */}

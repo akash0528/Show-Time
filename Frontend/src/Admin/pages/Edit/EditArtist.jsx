@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../Api/axiosConfig";
 import { toast } from "react-toastify";
 import {
   AiOutlineArrowLeft,
@@ -33,32 +33,27 @@ const EditArtist = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/admin/artist/${id}`,{
-            withCredentials:true
-          }
-        );
+        const res = await axios.get(`/api/admin/artist/${id}`, {
+          withCredentials: true,
+        });
 
-        const artist =
-  res.data.artist ||
-  res.data.data ||
-  res.data;
+        const artist = res.data.artist || res.data.data || res.data;
 
-setFormData({
-  artistName: artist.artistName ?? "",
-  title: artist.title ?? "",
-  location: artist.location ?? "",
-  timing: artist.timing ?? "",
-  duration: artist.duration ?? "",
-  price: artist.price ?? "",
-  description: artist.description ?? "",
-  date: artist.date
-    ? new Date(artist.date).toISOString().split("T")[0]
-    : "",
-  image: null
-});
+        setFormData({
+          artistName: artist.artistName ?? "",
+          title: artist.title ?? "",
+          location: artist.location ?? "",
+          timing: artist.timing ?? "",
+          duration: artist.duration ?? "",
+          price: artist.price ?? "",
+          description: artist.description ?? "",
+          date: artist.date
+            ? new Date(artist.date).toISOString().split("T")[0]
+            : "",
+          image: null,
+        });
 
-setPreview(artist.image || "");
+        setPreview(artist.image || "");
         setLoading(false);
       } catch (err) {
         toast.error("Artist fetch failed");
@@ -95,12 +90,10 @@ setPreview(artist.image || "");
         }
       });
 
-      const res = await axios.put(
-        `http://localhost:5000/api/admin/artist/${id}`,
-        data,
-        { headers: { "Content-Type": "multipart/form-data"},
-      withCredentials:true }
-      );
+      const res = await axios.put(`/api/admin/artist/${id}`, data, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
 
       toast.success(res.data.message || "Artist Updated");
       navigate("/admin/artist");

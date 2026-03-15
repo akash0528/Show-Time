@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ const Artist = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/artist/${id}`);
+        const res = await axios.get(`/api/artist/${id}`);
         setArtist(res.data);
       } catch (error) {
         toast.error("Artist are Not Fetch");
@@ -43,7 +43,7 @@ const Artist = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/bookings",
+        "/auth/bookings",
         {
           item: id,
           itemType: "Artist",

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../Api/axiosConfig";
 import { useNavigate } from "react-router-dom";
-import { AiOutlinePlus,AiOutlineEdit,AiOutlineDelete,} from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
 
 const AdminEvents = () => {
@@ -10,8 +10,8 @@ const AdminEvents = () => {
 
   const loadEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/events",{
-        withCredentials:true
+      const res = await axios.get("/api/admin/events", {
+        withCredentials: true,
       });
       const data = res.data.events || res.data.event || res.data || [];
       setEvents(Array.isArray(data) ? data : []);
@@ -25,34 +25,30 @@ const AdminEvents = () => {
   }, []);
 
   const deleteEvent = async (id) => {
-   
-    if (!window.confirm("Delete Event?")) return;{
+    if (!window.confirm("Delete Event?")) return;
+    {
       try {
-      await axios.delete(`http://localhost:5000/api/admin/events/${id}`,{
-      withCredentials:true
-    });
-    toast.success("Movie Removed Successfully")
-    loadEvents(); 
+        await axios.delete(`/api/admin/events/${id}`, {
+          withCredentials: true,
+        });
+        toast.success("Movie Removed Successfully");
+        loadEvents();
       } catch (error) {
-        toast.error("Deleted failed")
+        toast.error("Deleted failed");
       }
     }
-    
   };
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-375 mx-auto bg-white shadow-xl rounded-2xl p-6">
-
         {/* HEADER */}
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800">
               Event Management
             </h2>
-            <p className="text-sm text-gray-500">
-              Manage all platform events
-            </p>
+            <p className="text-sm text-gray-500">Manage all platform events</p>
           </div>
 
           <button
@@ -66,7 +62,6 @@ const AdminEvents = () => {
         {/* TABLE */}
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left border-collapse">
-
             <thead className="bg-gray-50 text-gray-600 uppercase text-xs">
               <tr>
                 <th className="px-3 py-3">#</th>
@@ -124,25 +119,17 @@ const AdminEvents = () => {
                       </span>
                     </td>
 
-                    <td className="px-3 py-4">
-                      {e.language || "N/A"}
-                    </td>
+                    <td className="px-3 py-4">{e.language || "N/A"}</td>
 
-                    <td className="px-3 py-4">
-                      {e.duration || "N/A"}
-                    </td>
+                    <td className="px-3 py-4">{e.duration || "N/A"}</td>
 
                     <td className="px-3 py-4">
                       {new Date(e.date).toLocaleDateString("en-IN")}
                     </td>
 
-                    <td className="px-3 py-4">
-                      {e.timing}
-                    </td>
+                    <td className="px-3 py-4">{e.timing}</td>
 
-                    <td className="px-3 py-4">
-                      {e.location}
-                    </td>
+                    <td className="px-3 py-4">{e.location}</td>
 
                     <td className="px-3 py-4 font-medium text-gray-700">
                       ₹{e.price}
@@ -166,7 +153,7 @@ const AdminEvents = () => {
                           }
                           className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs flex items-center gap-1 transition"
                         >
-                          <AiOutlineEdit /> Edit  
+                          <AiOutlineEdit /> Edit
                         </button>
 
                         <button
@@ -177,12 +164,10 @@ const AdminEvents = () => {
                         </button>
                       </div>
                     </td>
-
                   </tr>
                 ))
               )}
             </tbody>
-
           </table>
         </div>
       </div>

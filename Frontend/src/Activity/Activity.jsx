@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../Context/SearchProvider";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
@@ -19,7 +19,7 @@ const Activity = () => {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/activity");
+        const res = await axios.get("/api/activity");
         setActivity(res.data);
       } catch (error) {
         toast.error("Activity are not Fetched");

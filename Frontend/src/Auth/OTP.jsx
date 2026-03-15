@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
 
@@ -51,7 +51,7 @@ const OtpForm = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/user/verify-otp",
+        "/user/verify-otp",
         {
           email: email,
           otp: otpCode,

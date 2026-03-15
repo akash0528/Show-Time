@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Calendar, MapPin, MicVocal, Languages, Timer } from "lucide-react";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext";
 import { useContext } from "react";
@@ -19,7 +19,7 @@ const AllEvents = () => {
   useEffect(() => {
     const fetchAllEvents = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/events/${id}`);
+        const res = await axios.get(`/api/events/${id}`);
         setEvents(res.data);
       } catch (error) {
         toast.error("Event Not Found");
@@ -46,7 +46,7 @@ const AllEvents = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/bookings",
+        "/auth/bookings",
         {
           item: id,
           itemType: "AdminEvent",

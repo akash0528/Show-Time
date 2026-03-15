@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../Api/axiosConfig";
 import { toast } from "react-toastify";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
@@ -9,14 +9,14 @@ const AddArtist = () => {
 
   // text fields
   const [formData, setFormData] = useState({
-    artistName:"",
+    artistName: "",
     title: "",
     description: "",
     location: "",
     date: "",
     price: "",
-    performDetail:"",
-    timing:"",
+    performDetail: "",
+    timing: "",
   });
 
   // image file
@@ -72,12 +72,10 @@ const AddArtist = () => {
 
       data.append("image", image);
 
-      await axios.post(
-        "http://localhost:5000/api/admin/artist",
-        data,
-        { headers: { "Content-Type": "multipart/form-data"},
-      withCredentials:true }
-      );
+      await axios.post("/api/admin/artist", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
 
       toast.update(loadingToast, {
         render: "Event Created Successfully!",
@@ -109,15 +107,23 @@ const AddArtist = () => {
 
         {/* INPUTS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {["artistName","title", "location", "date", "price","performDetail","timing"].map((field) => (
+          {[
+            "artistName",
+            "title",
+            "location",
+            "date",
+            "price",
+            "performDetail",
+            "timing",
+          ].map((field) => (
             <input
               key={field}
               type={
                 field === "date"
                   ? "date"
                   : field === "price"
-                  ? "number"
-                  : "text"
+                    ? "number"
+                    : "text"
               }
               name={field}
               value={formData[field]}

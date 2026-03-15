@@ -1,8 +1,14 @@
 import Topbar from "../Layout/Topbar";
 import StatsCard from "../Layout/StateCard";
-import { FaFilm, FaCalendarAlt, FaUsers ,FaMusic,FaRunning } from "react-icons/fa";
+import {
+  FaFilm,
+  FaCalendarAlt,
+  FaUsers,
+  FaMusic,
+  FaRunning,
+} from "react-icons/fa";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../Api/axiosConfig";
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({});
@@ -10,8 +16,9 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/admin/dashboard/stats",
-          { withCredentials: true });
+        const res = await axios.get("/api/admin/dashboard/stats", {
+          withCredentials: true,
+        });
         setStats(res.data);
       } catch (err) {
         console.error("Failed to fetch stats", err);

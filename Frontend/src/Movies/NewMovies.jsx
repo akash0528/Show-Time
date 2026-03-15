@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { useSearch } from "../Context/SearchProvider";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -10,7 +10,7 @@ const NewMovies = () => {
 
   const fetchPremierMovie = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/movies/premier");
+      const res = await axios.get("/api/movies/premier");
       setPremierMovie(res.data);
     } catch (error) {
       toast.error("Library sync failed");

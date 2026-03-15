@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/auth/profile", {
+        const res = await axios.get("/auth/profile", {
           withCredentials: true,
         });
 
@@ -29,11 +29,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post(
-      "http://localhost:5000/auth/logout",
-      {},
-      { withCredentials: true },
-    );
+    await axios.post("/auth/logout", {}, { withCredentials: true });
     setUser(null);
   };
 

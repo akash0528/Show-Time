@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import inox from "../assets/inox.png";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { toast } from "react-toastify";
 
 const MovieDetails = () => {
@@ -13,7 +13,7 @@ const MovieDetails = () => {
 
   const fetchMovies = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/movies/${id}`);
+      const res = await axios.get(`/api/movies/${id}`);
       setMovieDetail(res.data);
     } catch (error) {
       toast.error("Library sync failed");

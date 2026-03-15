@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../Api/axiosConfig";
 import {
   AiOutlinePlus,
   AiOutlineEdit,
@@ -26,7 +26,7 @@ const AdminMovies = () => {
 
   const fetchMovies = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/movies", {
+      const res = await axios.get("/api/admin/movies", {
         withCredentials: true,
       });
       const data = res.data.movies || res.data || [];
@@ -65,7 +65,7 @@ const AdminMovies = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are You sure to Delete!")) {
       try {
-        await axios.delete(`http://localhost:5000/api/admin/movies/${id}`, {
+        await axios.delete(`/api/admin/movies/${id}`, {
           withCredentials: true,
         });
         toast.success("Movie Removed");
@@ -79,7 +79,7 @@ const AdminMovies = () => {
   const handleFeatureToggle = async (id, value) => {
     try {
       await axios.patch(
-        `http://localhost:5000/api/admin/home/movies/feature/${id}`,
+        `/api/admin/home/movies/feature/${id}`,
         { isFeatured: value },
         { withCredentials: true },
       );

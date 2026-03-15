@@ -3,7 +3,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import axios from "axios";
+import axios from "../Api/axiosConfig";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ const ArtistPage = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/artist");
+        const res = await axios.get("/api/artist");
         setArtist(res.data);
       } catch (error) {
         toast.error("Movies are not Fetched");

@@ -45,9 +45,13 @@ app.use("/api",ActivityRoutes)
 app.use("/api",EventsRoutes)
 app.use("/api",MoviesRoutes)
 
+app.get("/", (req, res) => {
+  res.send("Show-Time Backend Running 🚀");
+});
 
 
-mongoose.connect(process.env.DBUrl)
+
+mongoose.connect(process.env.DBUrl || 5000)
 .then(() =>{
     console.log("connected to mongodb");
     app.listen(process.env.PORT,() =>{

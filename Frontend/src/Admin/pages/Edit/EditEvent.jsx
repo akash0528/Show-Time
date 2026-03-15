@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../Api/axiosConfig";
 import { toast } from "react-toastify";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
@@ -15,12 +15,11 @@ const EditEvent = () => {
     location: "",
     date: "",
     price: "",
-    eventDetail:"",
-    eventType:"",
-    language:"",
-    timing:"",
-    duration:"",
-
+    eventDetail: "",
+    eventType: "",
+    language: "",
+    timing: "",
+    duration: "",
   });
 
   // image
@@ -32,11 +31,9 @@ const EditEvent = () => {
   useEffect(() => {
     const loadEvent = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/admin/events/${id}`,{
-            withCredentials:true
-          }
-        );
+        const res = await axios.get(`/api/admin/events/${id}`, {
+          withCredentials: true,
+        });
 
         const event = res.data.event;
 
@@ -93,16 +90,12 @@ const EditEvent = () => {
         data.append("image", imageFile);
       }
 
-      await axios.put(
-        `http://localhost:5000/api/admin/events/${id}`,
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            withCredentials:true
-          },
-        }
-      );
+      await axios.put(`/api/admin/events/${id}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          withCredentials: true,
+        },
+      });
 
       toast.update(loadingToast, {
         render: "Event Updated Successfully!",
@@ -124,164 +117,162 @@ const EditEvent = () => {
 
   /* ================= UI ================= */
   return (
-    
-  <div className="min-h-screen bg-linear-to-br from-slate-900 via-indigo-900 to-purple-900 flex justify-center items-start p-6">
-    <form
-      onSubmit={submit}
-      className="w-full max-w-4xl bg-[#0f111a]/90 backdrop-blur-xl
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-indigo-900 to-purple-900 flex justify-center items-start p-6">
+      <form
+        onSubmit={submit}
+        className="w-full max-w-4xl bg-[#0f111a]/90 backdrop-blur-xl
                  border border-white/10 rounded-3xl shadow-2xl
                  p-10 space-y-8"
-    >
-      <h2 className="text-4xl font-bold text-center text-white tracking-wide">
-        ✏️ Edit Event
-      </h2>
+      >
+        <h2 className="text-4xl font-bold text-center text-white tracking-wide">
+          ✏️ Edit Event
+        </h2>
 
-      {/* IMAGE SECTION */}
-      <label className="relative block cursor-pointer group">
-        {(imagePreview || oldImage?.startsWith("http")) && (
-          <img
-            src={imagePreview || oldImage}
-            alt="Event"
-            className="w-full h-72 object-cover rounded-2xl
+        {/* IMAGE SECTION */}
+        <label className="relative block cursor-pointer group">
+          {(imagePreview || oldImage?.startsWith("http")) && (
+            <img
+              src={imagePreview || oldImage}
+              alt="Event"
+              className="w-full h-72 object-cover rounded-2xl
                        border border-white/20"
-          />
-        )}
+            />
+          )}
 
-        <div
-          className="absolute inset-0 bg-black/60 opacity-0
+          <div
+            className="absolute inset-0 bg-black/60 opacity-0
                      group-hover:opacity-100 transition-all
                      flex items-center justify-center rounded-2xl"
-        >
-          <div className="flex items-center gap-3 text-white text-lg">
-            <AiOutlineCloudUpload size={26} />
-            <span>Change Event Image</span>
+          >
+            <div className="flex items-center gap-3 text-white text-lg">
+              <AiOutlineCloudUpload size={26} />
+              <span>Change Event Image</span>
+            </div>
           </div>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="hidden"
+          />
+        </label>
+
+        {/* INPUTS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+            placeholder="Event Title"
+            className="input-dark"
+            required
+          />
+
+          <input
+            name="location"
+            value={formData.location}
+            onChange={handleInputChange}
+            placeholder="Location"
+            className="input-dark"
+            required
+          />
+
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleInputChange}
+            className="input-dark"
+            required
+          />
+
+          <input
+            type="number"
+            name="price"
+            value={formData.price}
+            onChange={handleInputChange}
+            placeholder="Price"
+            className="input-dark"
+            required
+          />
+
+          <input
+            type="text"
+            name="eventDetail"
+            value={formData.eventDetail}
+            onChange={handleInputChange}
+            placeholder="EventDetail"
+            className="input-dark"
+            required
+          />
+
+          <input
+            type="eventType"
+            name="text"
+            value={formData.eventType}
+            onChange={handleInputChange}
+            placeholder="EventType"
+            className="input-dark"
+            required
+          />
+
+          <input
+            type="language"
+            name="text"
+            value={formData.language}
+            onChange={handleInputChange}
+            placeholder="Language"
+            className="input-dark"
+            required
+          />
+
+          <input
+            type="duration"
+            name="text"
+            value={formData.duration}
+            onChange={handleInputChange}
+            placeholder="Duration"
+            className="input-dark"
+            required
+          />
+
+          <input
+            type="timing"
+            name="timing"
+            value={formData.timing}
+            onChange={handleInputChange}
+            placeholder="Timing"
+            className="input-dark"
+            required
+          />
         </div>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="hidden"
-        />
-      </label>
-
-      {/* INPUTS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <input
-          name="title"
-          value={formData.title}
+        {/* DESCRIPTION */}
+        <textarea
+          name="description"
+          value={formData.description}
           onChange={handleInputChange}
-          placeholder="Event Title"
-          className="input-dark"
+          placeholder="Event Description"
+          rows="5"
+          className="input-dark resize-none"
           required
         />
 
-        <input
-          name="location"
-          value={formData.location}
-          onChange={handleInputChange}
-          placeholder="Location"
-          className="input-dark"
-          required
-        />
-
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleInputChange}
-          className="input-dark"
-          required
-        />
-
-        <input
-          type="number"
-          name="price"
-          value={formData.price}
-          onChange={handleInputChange}
-          placeholder="Price"
-          className="input-dark"
-          required
-        />
-
-        <input
-          type="text"
-          name="eventDetail"
-          value={formData.eventDetail}
-          onChange={handleInputChange}
-          placeholder="EventDetail"
-          className="input-dark"
-          required
-        />
-
-        <input
-          type="eventType"
-          name="text"
-          value={formData.eventType}
-          onChange={handleInputChange}
-          placeholder="EventType"
-          className="input-dark"
-          required
-        />
-
-        <input
-          type="language"
-          name="text"
-          value={formData.language}
-          onChange={handleInputChange}
-          placeholder="Language"
-          className="input-dark"
-          required
-        />
-
-      <input
-          type="duration"
-          name="text"
-          value={formData.duration}
-          onChange={handleInputChange}
-          placeholder="Duration"
-          className="input-dark"
-          required
-        />
-
-        <input
-          type="timing"
-          name="timing"
-          value={formData.timing}
-          onChange={handleInputChange}
-          placeholder="Timing"
-          className="input-dark"
-          required
-        />
-
-      </div>
-
-      {/* DESCRIPTION */}
-      <textarea
-        name="description"
-        value={formData.description}
-        onChange={handleInputChange}
-        placeholder="Event Description"
-        rows="5"
-        className="input-dark resize-none"
-        required
-      />
-
-      {/* BUTTON */}
-      <button
-        type="submit"
-        className="w-full py-4 rounded-2xl text-lg font-semibold
+        {/* BUTTON */}
+        <button
+          type="submit"
+          className="w-full py-4 rounded-2xl text-lg font-semibold
          text-white bg-linear-to-r from-orange-500 to-pink-500
          hover:from-pink-500 hover:to-purple-600
          transition-all duration-300 shadow-lg"
-      >
-        💾 Save Changes
-      </button>
-    </form>
+        >
+          💾 Save Changes
+        </button>
+      </form>
 
-    {/* Tailwind reusable input */}
-    <style>{`
+      {/* Tailwind reusable input */}
+      <style>{`
       .input-dark {
         width: 100%;
         padding: 14px;
@@ -299,8 +290,7 @@ const EditEvent = () => {
         box-shadow: 0 0 0 1px #a855f7;
       }
     `}</style>
-  </div>
-
+    </div>
   );
 };
 
