@@ -61,8 +61,8 @@ const Signin = async (req,res) =>{
 
     res.cookie("access_token", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: true,
+        sameSite: "none",
         path: "/",
     });
 
@@ -111,8 +111,8 @@ const verifyotp =async (req,res) =>{
 
     res.cookie("access_token", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: true,
+        sameSite: "none",
         path: "/",
     });
 
@@ -143,8 +143,8 @@ const updatedAvatar = async (req,res) => {
 const logout = (req, res) => {
     res.clearCookie("access_token", {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: true,
+        sameSite: "none",
         path: "/",
     });
 

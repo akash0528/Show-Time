@@ -26,7 +26,7 @@ import HomeRoutes from "./Routes/HomeRoutes.js"
 const app = express()
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:["https://show-time-pi.vercel.app"],
     credentials:true
 }))
 
