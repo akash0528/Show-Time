@@ -117,6 +117,7 @@ const getmovies = async (req,res) => {
 
 // Recent Movies 
 const recentMovies = async (req,res) => {
+    console.log("RecentMovies route hit");
     try {
          const latestmovies = await AdminMovies.find({status:"Now Showing"}).sort({createdAt:-1})
          console.log("Not fetch",latestmovies);
