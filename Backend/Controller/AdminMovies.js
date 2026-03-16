@@ -117,14 +117,19 @@ const getmovies = async (req,res) => {
 
 // Recent Movies 
 const recentMovies = async (req,res) => {
-    console.log("RecentMovies route hit");
     try {
-         const latestmovies = await AdminMovies.find({status:"Now Showing"}).sort({createdAt:-1})
-         console.log("Not fetch",latestmovies);
-        return res.status(200).json(latestmovies)
+        // Bina filter ke find karke dekhte hain
+        const latestmovies = await AdminMovies.find();
+        console.log("Database mein total movies kitni hain:", latestmovies.length);
+        
+        // Filter manually karke dekho
+        const filtered = latestmovies.filter(m => m.status === "Now Showing");
+        console.log("Filtered movies count:", filtered.length);
+
+        return res.status(200).json(filtered);
     } catch (error) {
-        console.error("Premier movies fetch error:", error);
-        return res.status(500).json({message:"Error fetching recent movies"})
+        console.error("DEBUG ERROR:", error);
+        return res.status(500).json({message: error.message});
     }
 }
 
