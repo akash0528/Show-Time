@@ -48,7 +48,7 @@ const Signup = () => {
   if (loading) {
     return (
       <div className="text-center">
-        <ClipLoader loading={true} />;
+        <ClipLoader loading={true} />
       </div>
     );
   }
