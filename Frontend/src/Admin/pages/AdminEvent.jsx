@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "../../Api/axiosConfig";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlus, AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
@@ -10,9 +10,12 @@ const AdminEvents = () => {
 
   const loadEvents = async () => {
     try {
-      const res = await axios.get("/api/admin/events", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://show-time-backend.onrender.com/api/admin/events",
+        {
+          withCredentials: true,
+        },
+      );
       const data = res.data.events || res.data.event || res.data || [];
       setEvents(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -28,9 +31,12 @@ const AdminEvents = () => {
     if (!window.confirm("Delete Event?")) return;
     {
       try {
-        await axios.delete(`/api/admin/events/${id}`, {
-          withCredentials: true,
-        });
+        await axios.delete(
+          `https://show-time-backend.onrender.com/api/admin/events/${id}`,
+          {
+            withCredentials: true,
+          },
+        );
         toast.success("Movie Removed Successfully");
         loadEvents();
       } catch (error) {

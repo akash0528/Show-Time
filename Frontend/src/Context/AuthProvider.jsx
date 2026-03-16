@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
@@ -9,9 +9,12 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("/auth/profile", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://show-time-backend.onrender.com/auth/profile",
+          {
+            withCredentials: true,
+          },
+        );
 
         setUser(res.data.user);
       } catch (err) {

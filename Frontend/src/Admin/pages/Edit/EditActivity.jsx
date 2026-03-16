@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "../../../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 import {
   AiOutlineArrowLeft,
@@ -34,9 +34,12 @@ const EditActivity = () => {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const res = await axios.get(`/api/admin/activity/${id}`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `https://show-time-backend.onrender.com/api/admin/activity/${id}`,
+          {
+            withCredentials: true,
+          },
+        );
 
         const activity = res.data.activity || res.data;
 
@@ -104,10 +107,14 @@ const EditActivity = () => {
         }
       });
 
-      const res = await axios.put(`/api/admin/activity/${id}`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true,
-      });
+      const res = await axios.put(
+        `https://show-time-backend.onrender.com/api/admin/activity/${id}`,
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true,
+        },
+      );
 
       toast.success(res.data.message || "Updated Successfully");
       navigate("/admin/activity");

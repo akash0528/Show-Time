@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useSearch } from "../Context/SearchProvider";
@@ -11,7 +11,9 @@ const NewMovie = () => {
 
   const fetchRecentMovie = async () => {
     try {
-      const res = await axios.get("/api/movies/recent");
+      const res = await axios.get(
+        "https://show-time-backend.onrender.com/api/movies/recent",
+      );
       setRecentMovie(res.data);
     } catch (error) {
       toast.error("Library sync failed");

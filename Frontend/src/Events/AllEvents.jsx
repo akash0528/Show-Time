@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Calendar, MapPin, MicVocal, Languages, Timer } from "lucide-react";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext";
 import { useContext } from "react";
@@ -19,7 +19,9 @@ const AllEvents = () => {
   useEffect(() => {
     const fetchAllEvents = async () => {
       try {
-        const res = await axios.get(`/api/events/${id}`);
+        const res = await axios.get(
+          `https://show-time-backend.onrender.com/api/events/${id}`,
+        );
         setEvents(res.data);
       } catch (error) {
         toast.error("Event Not Found");
@@ -46,7 +48,7 @@ const AllEvents = () => {
 
     try {
       const res = await axios.post(
-        "/auth/bookings",
+        "https://show-time-backend.onrender.com/auth/bookings",
         {
           item: id,
           itemType: "AdminEvent",

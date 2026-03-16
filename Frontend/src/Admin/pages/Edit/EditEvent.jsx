@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "../../../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
@@ -31,9 +31,12 @@ const EditEvent = () => {
   useEffect(() => {
     const loadEvent = async () => {
       try {
-        const res = await axios.get(`/api/admin/events/${id}`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `https://show-time-backend.onrender.com/api/admin/events/${id}`,
+          {
+            withCredentials: true,
+          },
+        );
 
         const event = res.data.event;
 
@@ -90,12 +93,16 @@ const EditEvent = () => {
         data.append("image", imageFile);
       }
 
-      await axios.put(`/api/admin/events/${id}`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          withCredentials: true,
+      await axios.put(
+        `https://show-time-backend.onrender.com/api/admin/events/${id}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            withCredentials: true,
+          },
         },
-      });
+      );
 
       toast.update(loadingToast, {
         render: "Event Updated Successfully!",

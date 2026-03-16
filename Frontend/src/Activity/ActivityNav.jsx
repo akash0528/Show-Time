@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Calendar, MapPin, Bookmark, Timer, Ticket } from "lucide-react";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext";
 import { useContext } from "react";
@@ -18,7 +18,9 @@ const ActivityNav = () => {
   useEffect(() => {
     const fetchActivtity = async () => {
       try {
-        const res = await axios.get(`/api/activity/${id}`);
+        const res = await axios.get(
+          `https://show-time-backend.onrender.com/api/activity/${id}`,
+        );
         setActivity(res.data);
       } catch (error) {
         if (error.response?.status === 404) {

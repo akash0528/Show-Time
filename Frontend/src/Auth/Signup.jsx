@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
@@ -23,9 +23,13 @@ const Signup = () => {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/signup", formData, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "https://show-time-backend.onrender.com/auth/signup",
+        formData,
+        {
+          withCredentials: true,
+        },
+      );
       toast.success("SignUp Successfully ✅");
 
       console.log(res.data);

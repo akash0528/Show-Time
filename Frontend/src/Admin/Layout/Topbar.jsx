@@ -2,7 +2,7 @@ import adminimg from "../../assets/Userimg.png";
 import AuthContext from "../../Context/AuthContext";
 import { useContext } from "react";
 import { Edit2 } from "lucide-react";
-import axios from "../../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 const Topbar = ({ title }) => {
@@ -17,7 +17,7 @@ const Topbar = ({ title }) => {
 
     try {
       const res = await axios.put(
-        "/auth/updated-avatar", // apna backend URL daal
+        "https://show-time-backend.onrender.com/auth/updated-avatar", // apna backend URL daal
         formData,
         {
           headers: {

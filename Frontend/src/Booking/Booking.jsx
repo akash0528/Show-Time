@@ -1,4 +1,4 @@
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -8,9 +8,12 @@ const Booking = () => {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const res = await axios.get("/auth/bookings", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://show-time-backend.onrender.com/auth/bookings",
+          {
+            withCredentials: true,
+          },
+        );
         setBooking(res.data);
       } catch (error) {
         toast.error("Booking Not Found");

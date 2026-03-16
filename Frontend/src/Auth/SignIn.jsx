@@ -1,4 +1,4 @@
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { TbLockPassword } from "react-icons/tb";
@@ -25,9 +25,13 @@ const SignIn = () => {
   const submitHandle = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/signin", formData, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "https://show-time-backend.onrender.com/auth/signin",
+        formData,
+        {
+          withCredentials: true,
+        },
+      );
 
       toast.success("SignIn Successfully ✅");
 

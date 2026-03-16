@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion } from "motion/react";
@@ -17,7 +17,9 @@ const EventSlider = () => {
 
   const fetchAllData = async () => {
     try {
-      const res = await axios.get(`/api/home/feature`);
+      const res = await axios.get(
+        `https://show-time-backend.onrender.com/api/home/feature`,
+      );
       const sortedData = res.data
         .filter((item) => item.artistName)
         .concat(res.data.filter((item) => !item.artistName));

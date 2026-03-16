@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../Context/SearchProvider";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
@@ -19,7 +19,9 @@ const Activity = () => {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const res = await axios.get("/api/activity");
+        const res = await axios.get(
+          "https://show-time-backend.onrender.com/api/activity",
+        );
         setActivity(res.data);
       } catch (error) {
         toast.error("Activity are not Fetched");

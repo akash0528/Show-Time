@@ -8,7 +8,7 @@ import {
   FaRunning,
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import axios from "../../Api/axiosConfig";
+import axios from "axios";
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({});
@@ -16,9 +16,12 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get("/api/admin/dashboard/stats", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://show-time-backend.onrender.com/api/admin/dashboard/stats",
+          {
+            withCredentials: true,
+          },
+        );
         setStats(res.data);
       } catch (err) {
         console.error("Failed to fetch stats", err);

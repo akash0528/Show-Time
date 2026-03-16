@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "../../Api/axiosConfig";
+import axios from "axios";
 import {
   AiOutlinePlus,
   AiOutlineEdit,
@@ -26,9 +26,12 @@ const AdminMovies = () => {
 
   const fetchMovies = async () => {
     try {
-      const res = await axios.get("/api/admin/movies", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://show-time-backend.onrender.com/api/admin/movies",
+        {
+          withCredentials: true,
+        },
+      );
       const data = res.data.movies || res.data || [];
       setMovies(data);
       setFilteredMovies(data);
@@ -65,9 +68,12 @@ const AdminMovies = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are You sure to Delete!")) {
       try {
-        await axios.delete(`/api/admin/movies/${id}`, {
-          withCredentials: true,
-        });
+        await axios.delete(
+          `https://show-time-backend.onrender.com/api/admin/movies/${id}`,
+          {
+            withCredentials: true,
+          },
+        );
         toast.success("Movie Removed");
         fetchMovies();
       } catch (err) {
@@ -79,7 +85,7 @@ const AdminMovies = () => {
   const handleFeatureToggle = async (id, value) => {
     try {
       await axios.patch(
-        `/api/admin/home/movies/feature/${id}`,
+        `https://show-time-backend.onrender.com/api/admin/home/movies/feature/${id}`,
         { isFeatured: value },
         { withCredentials: true },
       );

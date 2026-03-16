@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "../../../Api/axiosConfig";
+import axios from "axios";
 import {
   AiOutlineClose,
   AiOutlineCloudUpload,
@@ -96,12 +96,16 @@ const AddMovies = () => {
       data.append("theatres", JSON.stringify(theatres));
       data.append("image", posterFile);
 
-      await axios.post("/api/admin/movie", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      await axios.post(
+        "https://show-time-backend.onrender.com/api/admin/movie",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
         },
-        withCredentials: true,
-      });
+      );
 
       toast.update(loadingToast, {
         render: "Movie Added Successfully!",
@@ -120,8 +124,6 @@ const AddMovies = () => {
       });
     }
   };
-
-  /* ---------------- JSX UI ---------------- */
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-300 p-2 md:p-6 flex items-center justify-center font-sans">

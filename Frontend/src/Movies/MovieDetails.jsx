@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import inox from "../assets/inox.png";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 const MovieDetails = () => {
@@ -13,7 +13,9 @@ const MovieDetails = () => {
 
   const fetchMovies = async () => {
     try {
-      const res = await axios.get(`/api/movies/${id}`);
+      const res = await axios.get(
+        `https://show-time-backend.onrender.com/api/movies/${id}`,
+      );
       setMovieDetail(res.data);
     } catch (error) {
       toast.error("Library sync failed");

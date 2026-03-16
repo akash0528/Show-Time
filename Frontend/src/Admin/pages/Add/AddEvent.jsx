@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../../../Api/axiosConfig";
+import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
@@ -74,10 +74,14 @@ const AddEvent = () => {
 
       data.append("image", posterFile);
 
-      await axios.post("/api/admin/events", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true,
-      });
+      await axios.post(
+        "https://show-time-backend.onrender.com/api/admin/events",
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true,
+        },
+      );
 
       toast.update(loadingToast, {
         render: "Event Created Successfully!",
