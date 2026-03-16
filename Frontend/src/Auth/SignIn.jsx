@@ -13,6 +13,7 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const { login } = useContext(AuthContext);
 
@@ -25,6 +26,7 @@ const SignIn = () => {
   const submitHandle = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const res = await axios.post(
         "https://show-time-backend.onrender.com/auth/signin",
         formData,
@@ -49,6 +51,8 @@ const SignIn = () => {
     } catch (err) {
       console.log(err);
       toast.error("signin Failed ❌");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -97,9 +101,13 @@ const SignIn = () => {
 
             <button
               type="submit"
-              className="w-full py-2 bg-indigo-500  text-white rounded-lg font-semibold hover:bg-indigo-600 transiton text-center cursor-pointer"
+              disabled={loading}
+              className="w-full py-2 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-600 flex items-center justify-center gap-2"
             >
-              Signin
+              {loading && (
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              )}
+              {loading ? "Signing In..." : "Signin"}
             </button>
             <p className="text-sm text-gray-600 text-center mt-3">
               Create Account{""}{" "}
