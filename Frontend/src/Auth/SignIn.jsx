@@ -6,7 +6,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { toast } from "react-toastify";
-import { CircleLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 import AuthContext from "../Context/AuthContext";
 
 const SignIn = () => {
@@ -60,7 +60,7 @@ const SignIn = () => {
   if (loading) {
     return (
       <div className="text-center">
-        <CircleLoader loading={true} />;
+        <ClipLoader loading={true} />;
       </div>
     );
   }
