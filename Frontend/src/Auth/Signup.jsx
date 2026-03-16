@@ -6,6 +6,7 @@ import { FiUser } from "react-icons/fi";
 import { TbLockPassword } from "react-icons/tb";
 import { MdOutlineMail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
+import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
 const Signup = () => {
@@ -46,8 +47,8 @@ const Signup = () => {
   };
   if (loading) {
     return (
-      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin">
-        signup.....
+      <div className="text-center">
+        <ClipLoader loading={true} />;
       </div>
     );
   }

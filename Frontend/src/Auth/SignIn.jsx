@@ -58,7 +58,11 @@ const SignIn = () => {
   };
 
   if (loading) {
-    return <CircleLoader loading={true} />;
+    return (
+      <div className="text-center">
+        <CircleLoader loading={true} />;
+      </div>
+    );
   }
 
   return (
