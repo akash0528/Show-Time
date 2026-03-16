@@ -7,6 +7,5 @@ MoviesRoutes.get("/movies/recent-movies",AdminMovies.recentMovies);
 
 MoviesRoutes.get("/movies/premier-movies",AdminMovies.premier);
 
-MoviesRoutes.get("/movies/:id",AdminMovies.getmovies);
 
 export default MoviesRoutes;
