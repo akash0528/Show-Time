@@ -44,6 +44,13 @@ const Signup = () => {
       setLoading(false);
     }
   };
+  if (loading) {
+    return (
+      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin">
+        signup.....
+      </div>
+    );
+  }
 
   return (
     <section className="flex items-center justify-center min-h-screen bg-linear-to-r from-indigo-500 to-purple-600 px-4">
@@ -94,13 +101,10 @@ const Signup = () => {
 
           <button
             type="submit"
-            disabled={loading}
-            className="w-full py-2 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-600 flex items-center justify-center gap-2"
+            className="w-full py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-indigo-600 transiton cursor-pointer"
           >
-            {loading && (
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-            )}
-            {loading ? "Signup..." : "Signup"}
+            {" "}
+            Signup
           </button>
 
           <p className="text-sm text-gray-600 text-center mt-4">

@@ -55,6 +55,15 @@ const SignIn = () => {
       setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin">
+        signin.....
+      </div>
+    );
+  }
+
   return (
     <>
       <section className="flex items-center justify-center min-h-screen bg-linear-to-r to-pink-600 from-violet-800 px-4  ">
@@ -101,13 +110,9 @@ const SignIn = () => {
 
             <button
               type="submit"
-              disabled={loading}
-              className="w-full py-2 bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-600 flex items-center justify-center gap-2"
+              className="w-full py-2 bg-indigo-500  text-white rounded-lg font-semibold hover:bg-indigo-600 transiton text-center cursor-pointer"
             >
-              {loading && (
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              )}
-              {loading ? "Signing In..." : "Signin"}
+              Signin
             </button>
             <p className="text-sm text-gray-600 text-center mt-3">
               Create Account{""}{" "}
