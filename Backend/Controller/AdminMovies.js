@@ -119,7 +119,7 @@ const getmovies = async (req,res) => {
 const recentMovies = async (req,res) => {
     console.log("RecentMovies route hit");
     try {
-        const latestmovies = await AdminMovies.find({status: { $regex: "Now Showing", $options: "i" }}).sort({ createdAt: -1 });
+        const latestmovies = await AdminMovies.find().sort({ createdAt: -1 }).limit(5);
          console.log("Not fetch",latestmovies);
         return res.status(200).json(latestmovies)
     } catch (error) {
@@ -131,7 +131,7 @@ const recentMovies = async (req,res) => {
 //Premier Movies
 const premier = async (req,res) => {
     try {
-       const premierMovie = await AdminMovies.find({status: { $regex: "Coming Soon", $options: "i" }}).sort({ createdAt: 1 });
+       const premierMovie = await AdminMovies.find().sort({ createdAt: 1 }).limit(5);
        console.log("Premier movies fetched:", premierMovie);
         return res.status(200).json(premierMovie) 
     } catch (error) {
