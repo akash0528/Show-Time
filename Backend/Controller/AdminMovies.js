@@ -135,7 +135,11 @@ const premier = async (req,res) => {
        console.log("Premier movies fetched:", premierMovie);
         return res.status(200).json(premierMovie) 
     } catch (error) {
-         return res.status(500).json({message:"Error fetching recent movies"})
-    }
+    console.error("Premier movies fetch error:", error);
+    return res.status(500).json({
+        message:"Error fetching premier movies",
+        error:error.message
+    })
+}
 }
 export default {Movie,Movies,MoviesUpdate,MoviesDelete,GetEditMovie,getmovies ,recentMovies,premier}
