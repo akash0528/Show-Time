@@ -32,7 +32,11 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post("/auth/logout", {}, { withCredentials: true });
+    await axios.post(
+      "https://show-time-backend.onrender.com/auth/logout",
+      {},
+      { withCredentials: true },
+    );
     setUser(null);
   };
 
