@@ -12,7 +12,7 @@ const NewMovie = () => {
   const fetchRecentMovie = async () => {
     try {
       const res = await axios.get(
-        "https://show-time-backend.onrender.com/api/movies/recent",
+        "https://show-time-backend.onrender.com/api/movies/recent-movies",
       );
       setRecentMovie(res.data);
     } catch (error) {

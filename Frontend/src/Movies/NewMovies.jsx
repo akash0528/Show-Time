@@ -11,7 +11,7 @@ const NewMovies = () => {
   const fetchPremierMovie = async () => {
     try {
       const res = await axios.get(
-        "https://show-time-backend.onrender.com/api/movies/premier",
+        "https://show-time-backend.onrender.com/api/movies/premier-movies",
       );
       setPremierMovie(res.data);
     } catch (error) {
