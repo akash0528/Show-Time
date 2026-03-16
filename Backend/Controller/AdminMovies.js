@@ -1,4 +1,4 @@
-import AdminMovies from "../Model/AdminMovies.js"
+import AdminMovies from "../Model/AdminMovies.js";
 import cloudinary from "../config/Cloudinary.js";
 
 //Post For Movies
