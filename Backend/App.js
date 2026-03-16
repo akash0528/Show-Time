@@ -45,10 +45,6 @@ app.use("/api",ActivityRoutes)
 app.use("/api",EventsRoutes)
 app.use("/api",MoviesRoutes)
 
-app.get("/", (req, res) => {
-  res.send("Show-Time Backend Running 🚀");
-});
-
 
 
 mongoose.connect(process.env.DBUrl || 5000)

@@ -121,6 +121,7 @@ const recentMovies = async (req,res) => {
          const latestmovies = await AdminMovies.find({status:"Now Showing"}).sort({createdAt:-1})
         return res.status(200).json(latestmovies)
     } catch (error) {
+        console.error("Premier movies fetch error:", error);
         return res.status(500).json({message:"Error fetching recent movies"})
     }
 }
