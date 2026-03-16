@@ -119,6 +119,7 @@ const getmovies = async (req,res) => {
 const recentMovies = async (req,res) => {
     try {
          const latestmovies = await AdminMovies.find({status:"Now Showing"}).sort({createdAt:-1})
+         console.log("Not fetch",latestmovies);
         return res.status(200).json(latestmovies)
     } catch (error) {
         console.error("Premier movies fetch error:", error);
@@ -130,6 +131,7 @@ const recentMovies = async (req,res) => {
 const premier = async (req,res) => {
     try {
        const premierMovie = await AdminMovies.find({status:"Coming Soon"}).sort({createdAt:1})
+       console.log("Premier movies fetched:", premierMovie);
         return res.status(200).json(premierMovie) 
     } catch (error) {
          return res.status(500).json({message:"Error fetching recent movies"})
