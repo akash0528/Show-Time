@@ -6,6 +6,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { toast } from "react-toastify";
+import { CircleLoader } from "react-spinners";
 import AuthContext from "../Context/AuthContext";
 
 const SignIn = () => {
@@ -57,12 +58,7 @@ const SignIn = () => {
   };
 
   if (loading) {
-    return (
-      <button type="button" class="bg-indigo-500 ..." disabled>
-        <svg class="mr-3 size-5 animate-spin ..." viewBox="0 0 24 24"></svg>
-        Processing…
-      </button>
-    );
+    return <CircleLoader loading={true} />;
   }
 
   return (
