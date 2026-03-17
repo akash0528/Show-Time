@@ -12,7 +12,7 @@ const NewMovies = () => {
   const fetchPremierMovie = async () => {
     try {
       const res = await axios.get(
-        "https://show-time-backend.onrender.com/api/movies/premier-movies",
+        "http:localhost:5000/api/movies/premier-movies",
       );
       setPremierMovie(res.data);
     } catch (error) {
@@ -44,16 +44,16 @@ const NewMovies = () => {
   }
 
   return (
-    <div className="w-full px-12">
+    <div className="w-full md:px-12 px:8">
       <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
         Premiering This Week
       </h1>
 
       {/* Responsive wrapper */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 p-4 md:flex md:gap-2">
+      <div className="grid grid-cols-2 gap-6 p-4 md:flex md:gap-4">
         {filtered.map((movies, el) => (
           <div
-            className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300 ml-0 md:ml-4"
+            className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300  md:ml-4"
             key={el}
             onClick={() => navigate(`/movie/${movies._id}`)}
           >

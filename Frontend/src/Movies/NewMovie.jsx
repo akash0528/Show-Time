@@ -15,7 +15,7 @@ const NewMovie = () => {
     setloading(true);
     try {
       const res = await axios.get(
-        "https://show-time-backend.onrender.com/api/movies/recent-movies",
+        "http:localhost:5000/api/movies/recent-movies",
       );
       setRecentMovie(res.data);
     } catch (error) {
@@ -56,7 +56,7 @@ const NewMovie = () => {
   }
 
   return (
-    <div className="w-full px-12 ">
+    <div className="w-full px-8 ">
       <h2 className="font-bold px-8 text-2xl pt-4">Recent Movies</h2>
       <div className="grid grid-cols-2 gap-4 p-4 md:flex md:gap-2">
         {filtered.map((movie, movi) => (
