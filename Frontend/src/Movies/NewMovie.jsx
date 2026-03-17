@@ -67,7 +67,7 @@ const NewMovie = () => {
             animate={{}}
             key={movi}
             transition={{}}
-            whileHover={window.innerWidth >= 768 ? { scale: 0.9 } : {}}
+            whileHover={{ scale: 0.95 }}
             onClick={() => navigate(`/movie/${movie._id}`)}
           >
             <img
