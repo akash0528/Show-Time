@@ -4,16 +4,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext";
 import { useContext } from "react";
+import { ClipLoader } from "react-spinners";
 
 const Artist = () => {
   const [count, setCount] = useState(0);
   const [artist, setArtist] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
+    setLoading(true);
     const fetchArtist = async () => {
       try {
         const res = await axios.get(
@@ -22,6 +25,8 @@ const Artist = () => {
         setArtist(res.data);
       } catch (error) {
         toast.error("Artist are Not Fetch");
+      } finally {
+        setLoading(false);
       }
     };
     fetchArtist();
@@ -67,8 +72,12 @@ const Artist = () => {
       year: "numeric",
     });
 
-  if (!artist) {
-    return <p className="text-center text-xl">Loading...</p>;
+  if (loading) {
+    return (
+      <p className="text-center text-xl">
+        <ClipLoader loading={true} />
+      </p>
+    );
   }
 
   return (
