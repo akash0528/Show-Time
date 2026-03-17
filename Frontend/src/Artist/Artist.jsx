@@ -74,7 +74,7 @@ const Artist = () => {
 
   if (loading) {
     return (
-      <p className="text-center text-xl">
+      <p className="min-h-screen text-center text-xl">
         <ClipLoader loading={true} />
       </p>
     );
