@@ -10,10 +10,12 @@ import { toast } from "react-toastify";
 
 const ArtistPage = () => {
   const [artist, setArtist] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const Navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     const fetchArtists = async () => {
       try {
         const res = await axios.get(
@@ -22,10 +24,20 @@ const ArtistPage = () => {
         setArtist(res.data);
       } catch (error) {
         toast.error("Movies are not Fetched");
+      } finally {
+        setLoading(false);
       }
     };
     fetchArtists();
   }, []);
+
+  if (loading) {
+    return <div className="py-10 text-center ">Loading Artists...</div>;
+  }
+
+  if (!artist || artist.length === 0) {
+    return null;
+  }
 
   return (
     <div className="w-full ">

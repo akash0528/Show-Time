@@ -6,16 +6,19 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext";
 import { useContext } from "react";
+import { ClipLoader } from "react-spinners";
 
 const ActivityNav = () => {
   const [count, setCount] = useState(0);
   const [activity, setActivity] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
+    setLoading(true);
     const fetchActivtity = async () => {
       try {
         const res = await axios.get(
@@ -26,6 +29,8 @@ const ActivityNav = () => {
         if (error.response?.status === 404) {
           toast.error("Activity not found");
         }
+      } finally {
+        setLoading(false);
       }
     };
     fetchActivtity();
@@ -67,8 +72,12 @@ const ActivityNav = () => {
     }
   };
 
-  if (!activity) {
-    return <p className="text-center text-xl">Loading...</p>;
+  if (loading) {
+    return (
+      <p className="min-h-screen text-center text-xl">
+        <ClipLoader loading={true} />
+      </p>
+    );
   }
 
   return (
