@@ -31,7 +31,9 @@ const NewMovies = () => {
 
   if (query && filtered.length === 0) {
     return (
-      <div className=" flex my-24 justify-center text-2xl font-semibold text-black"></div>
+      <div className=" flex my-24 justify-center text-2xl font-semibold text-black">
+        No Data Found
+      </div>
     );
   }
 

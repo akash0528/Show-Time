@@ -40,11 +40,11 @@ const NewMovie = () => {
 
   return (
     <div className="w-full px-12 ">
-      <h2 className="font-bold px-8 text-2xl pt-4">Recent Movies</h2>
+      <h2 className="font-bold md:px-8 text-2xl pt-4">Recent Movies</h2>
       <div className="grid grid-cols-2 gap-4 p-4 md:flex md:gap-2">
         {filtered.map((movie, movi) => (
           <motion.div
-            className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300 ml-0 md:ml-4"
+            className="w-full md:w-50 md:px-8 rounded-lg cursor-pointer border border-gray-300 ml-0 md:ml-4"
             animate={{}}
             key={movi}
             transition={{}}
