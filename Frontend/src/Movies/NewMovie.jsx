@@ -71,7 +71,7 @@ const NewMovie = () => {
             <img
               src={movie?.image}
               alt={movie?.title}
-              className="rounded-tr-lg rounded-tl-lg object-fill h-40 sm:h-44 md:h-60 w-full"
+              className="rounded-tr-lg rounded-tl-lg object-fill h-56 sm:h-60 md:h-60 w-full"
             />
             <p className="font-bold md:text-lg text-sm px-2 pt-2">
               {movie?.title}
