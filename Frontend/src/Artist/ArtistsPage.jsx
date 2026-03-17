@@ -32,7 +32,7 @@ const ArtistPage = () => {
   }, []);
 
   if (loading) {
-    return <div className="py-10 text-center ">Loading Artists...</div>;
+    return <div className="py-10 text-center "></div>;
   }
 
   if (!artist || artist.length === 0) {
