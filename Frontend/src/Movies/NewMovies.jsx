@@ -62,10 +62,10 @@ const NewMovies = () => {
               alt={movies?.title}
               className="rounded-tr-lg rounded-tl-lg object-fill h-56 sm:h-60 md:h-60 w-full"
             />
-            <p className="font-bold md:font-medium text-base md:text-lg px-2 pt-2 truncate">
+            <p className="font-bold md:font-medium text-base md:text-lg px-2 pt-2 ">
               {movies?.title}
             </p>
-            <p className="px-2 pb-2 text-sm text-gray-800 font-medium truncate">
+            <p className="px-2 pb-2 text-sm text-gray-800 font-medium ">
               {movies.rating} | {movies?.genre} | {movies?.language}
             </p>
           </div>

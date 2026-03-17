@@ -61,7 +61,7 @@ const NewMovie = () => {
       <div className="grid grid-cols-2 gap-4 p-4 md:flex md:gap-2">
         {filtered.map((movie, movi) => (
           <motion.div
-            className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300 ml-0 md:ml-4"
+            className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300  md:ml-4"
             animate={{}}
             key={movi}
             transition={{}}
