@@ -12,7 +12,7 @@ const NewMovies = () => {
   const fetchPremierMovie = async () => {
     try {
       const res = await axios.get(
-        "http:localhost:5000/api/movies/premier-movies",
+        "https://show-time-backend.onrender.com/api/movies/premier-movies",
       );
       setPremierMovie(res.data);
     } catch (error) {

@@ -15,7 +15,7 @@ const NewMovie = () => {
     setloading(true);
     try {
       const res = await axios.get(
-        "http:localhost:5000/api/movies/recent-movies",
+        "https://show-time-backend.onrender.com/api/movies/recent-movies",
       );
       setRecentMovie(res.data);
     } catch (error) {
