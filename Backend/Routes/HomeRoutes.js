@@ -15,6 +15,6 @@ HomeRoutes.get("/artist/:id",AdminArtist.GetArtist)
 
 HomeRoutes.get("/event/:id",AdminEvent.GetEvents)
 
-HomeRoutes.get("/movies/:id",AdminMovies.getmovies)
+HomeRoutes.get("/movie/:id",AdminMovies.getmovies)
 
 export default HomeRoutes;

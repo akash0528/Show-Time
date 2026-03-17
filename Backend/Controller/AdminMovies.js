@@ -119,7 +119,7 @@ const getmovies = async (req,res) => {
 const recentMovies = async (req,res) => {
     console.log("RecentMovies route hit");
     try {
-         const latestmovies = await AdminMovies.find()
+         const latestmovies = await AdminMovies.find({status:"Now Showing"}).sort({createdAt:-1})
          console.log("Not fetch",latestmovies);
         return res.status(200).json(latestmovies)
     } catch (error) {
