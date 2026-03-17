@@ -35,6 +35,12 @@ const NewMovies = () => {
     return null;
   }
 
+  if (query && filtered.length === 0) {
+    return (
+      <div className=" flex my-24 justify-center text-2xl font-semibold text-black"></div>
+    );
+  }
+
   return (
     <div className="w-full md:px-12 px:8">
       <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
