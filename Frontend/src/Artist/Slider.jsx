@@ -9,13 +9,16 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 const EventSlider = () => {
   const [allData, setAllData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const fetchAllData = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(
         `https://show-time-backend.onrender.com/api/home/feature`,
@@ -26,6 +29,8 @@ const EventSlider = () => {
       setAllData(sortedData);
     } catch (error) {
       toast.error("Library sync failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,6 +56,14 @@ const EventSlider = () => {
       month: "long",
       year: "numeric",
     });
+
+  if (loading) {
+    return (
+      <p className="min-h-screen text-center text-xl">
+        <ClipLoader loading={true} />
+      </p>
+    );
+  }
 
   return (
     <div className=" relative">

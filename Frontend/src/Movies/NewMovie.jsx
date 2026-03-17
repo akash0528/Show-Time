@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useSearch } from "../Context/SearchProvider";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 const NewMovie = () => {
   const [recentMovie, setRecentMovie] = useState([]);
@@ -43,7 +44,11 @@ const NewMovie = () => {
   }
 
   if (loading) {
-    return <div className="py-10 text-center"></div>;
+    return (
+      <p className="min-h-screen text-center text-xl">
+        <ClipLoader loading={true} />
+      </p>
+    );
   }
 
   if (!recentMovie || recentMovie.length === 0) {
