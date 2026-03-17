@@ -8,11 +8,13 @@ const TopEvent = () => {
   const { query } = useSearch();
 
   const [events, setEvent] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const filtered = events.filter((m) => m.title.toLowerCase().includes(query));
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     const fetchEvent = async () => {
       try {
         const res = await axios.get(
@@ -21,6 +23,8 @@ const TopEvent = () => {
         setEvent(res.data);
       } catch (error) {
         toast.error("Activity are Not Feched");
+      } finally {
+        setLoading(false);
       }
     };
     fetchEvent();
@@ -33,6 +37,14 @@ const TopEvent = () => {
       month: "long",
       year: "numeric",
     });
+
+  if (loading) {
+    return <div className="py-10 text-center "></div>;
+  }
+
+  if (!events || events.length === 0) {
+    return null;
+  }
 
   if (query && filtered.length === 0) {
     return (

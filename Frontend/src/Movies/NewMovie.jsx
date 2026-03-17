@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 const NewMovie = () => {
   const [recentMovie, setRecentMovie] = useState([]);
+  const [loading, setloading] = useState(false);
   const navigate = useNavigate();
 
   const fetchRecentMovie = async () => {
+    setloading(true);
     try {
       const res = await axios.get(
         "https://show-time-backend.onrender.com/api/movies/recent-movies",
@@ -17,6 +19,8 @@ const NewMovie = () => {
       setRecentMovie(res.data);
     } catch (error) {
       toast.error("Library sync failed");
+    } finally {
+      setloading(false);
     }
   };
 
@@ -36,6 +40,14 @@ const NewMovie = () => {
         No Movie Found 😕
       </div>
     );
+  }
+
+  if (loading) {
+    return <div className="py-10 text-center"></div>;
+  }
+
+  if (!recentMovie || recentMovie.length === 0) {
+    return null;
   }
 
   return (
