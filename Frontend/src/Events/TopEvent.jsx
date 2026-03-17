@@ -3,6 +3,7 @@ import { useSearch } from "../Context/SearchProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 const TopEvent = () => {
   const { query } = useSearch();
@@ -39,7 +40,11 @@ const TopEvent = () => {
     });
 
   if (loading) {
-    return <div className="py-10 text-center "></div>;
+    return (
+      <div className="py-10 text-center ">
+        <ClipLoader loading={true} />
+      </div>
+    );
   }
 
   if (!events || events.length === 0) {
