@@ -1,31 +1,32 @@
 import nodemailer from "nodemailer"
 
-const sendOtp =async (email,otp) =>{
-    try{
+const sendOtp = async (email, otp) => {
+    try {
         const transporter = nodemailer.createTransport({
-            service:"gmail",
-            auth:{
-                user: "akashdivakar852@gmail.com",
-                pass: "ylvc uejr tfip htzn"
+            service: "gmail",
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
             }
         });
 
         const mailOptions = {
-            from: "akashdivakar852@gmail.com",
+            from: process.env.EMAIL_USER,
             to: email,
             subject: "Your OTP Code",
-            text: `Your Otp is ${otp}`
-        }
+            text: `Your OTP is ${otp}`
+        };
 
-        transporter.sendMail(mailOptions)
-            .then(() => console.log("OTP sent"))
-            .catch(err => console.log("Email send error:", err));
-            return true;
+       
+        const info = await transporter.sendMail(mailOptions);
+        console.log("SUCCESS:", info.response);
 
-    }catch(err){
-        console.log(err);
+        return true;
+
+    } catch (err) {
+        console.log("FULL ERROR:", err);
         return false;
     }
-}
+};
 
 export default sendOtp;

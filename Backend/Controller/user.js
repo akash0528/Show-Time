@@ -27,7 +27,7 @@ const Signup = async (req,res) =>{
             otp,
             expiry: Date.now() + 5 * 60 * 1000};
 
-            await sendOtp(email,otp)
+             sendOtp(email,otp)
             return res.status(200).json({
                 message:"Otp send to your email",
             })
