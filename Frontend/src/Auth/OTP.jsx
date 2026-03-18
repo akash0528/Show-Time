@@ -51,7 +51,7 @@ const OtpForm = () => {
 
     try {
       const res = await axios.post(
-        "https://show-time-backend.onrender.com/user/verify-otp",
+        "https://show-time-backend.onrender.com/auth/verify-otp",
         {
           email: email,
           otp: otpCode,
