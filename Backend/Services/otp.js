@@ -3,18 +3,23 @@ import nodemailer from "nodemailer"
 const sendOtp = async (email, otp) => {
     try {
         const transporter = nodemailer.createTransport({
-               service:"gmail",
+                host: "smtp-relay.brevo.com",
+                port: 2525,
+                secure: false,
                 auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS,
                         },
+             tls: {
+                rejectUnauthorized: false
+                  }
             });
 
         console.log("EMAIL:", process.env.EMAIL_USER);
 console.log("PASS:", process.env.EMAIL_PASS ? "Loaded" : "Missing");
 
         const mailOptions = {
-            from: process.env.EMAIL_USER,
+            from: "akashdivakar1221@gmail.com",
             to: email,
             subject: "Your OTP Code",
             text: `Your OTP is ${otp}`
