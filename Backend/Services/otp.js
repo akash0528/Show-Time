@@ -12,6 +12,9 @@ const sendOtp = async (email, otp) => {
             }
         });
 
+        console.log("EMAIL:", process.env.EMAIL_USER);
+console.log("PASS:", process.env.EMAIL_PASS ? "Loaded" : "Missing");
+
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: email,
