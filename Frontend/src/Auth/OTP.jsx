@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const OtpForm = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -40,12 +41,11 @@ const OtpForm = () => {
 
   const submitOtp = async (e) => {
     e.preventDefault();
-    alert("OTP Submitted: " + otp.join(""));
 
     const otpCode = otp.join("");
 
     if (otpCode.length != 4) {
-      alert("Enter 4 digit OTP");
+      toast.warning("Enter 4 digit OTP");
       return;
     }
 
@@ -72,11 +72,11 @@ const OtpForm = () => {
       setOtp(["", "", "", ""]);
 
       inputs.current[0].focus();
-
+      toast.success("Signup Successfully");
       navigate("/Home");
     } catch (err) {
       console.log(err);
-      alert(err.response?.data?.message || "Something went wrong");
+      toast.error(err.response?.data?.message || "Something went wrong");
     }
   };
 
