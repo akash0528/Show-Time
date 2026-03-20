@@ -48,7 +48,7 @@ const NewMovies = () => {
       </h1>
 
       {/* Responsive wrapper */}
-      <div className="grid grid-cols-2 gap-6 p-4 md:flex md:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
         {filtered.map((movies, el) => (
           <div
             className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300  md:ml-4"

@@ -60,7 +60,7 @@ const NewMovie = () => {
       <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
         Recent Movies
       </h1>
-      <div className="grid grid-cols-2 gap-6 p-4 md:flex md:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
         {filtered.map((movie, movi) => (
           <motion.div
             className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300  md:ml-4"
