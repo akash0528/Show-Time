@@ -12,10 +12,12 @@ const SeatBooking = () => {
   const { state } = useLocation();
   const [movieDetail, setMovieDetail] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const fetchMovies = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(
         `https://show-time-backend.onrender.com/api/movies/${id}`,
@@ -23,8 +25,18 @@ const SeatBooking = () => {
       setMovieDetail(res.data);
     } catch (error) {
       toast.error("Library sync failed");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <p className="min-h-screen text-center text-xl">
+        <ClipLoader loading={true} />
+      </p>
+    );
+  }
 
   useEffect(() => {
     fetchMovies();

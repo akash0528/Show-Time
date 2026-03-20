@@ -60,29 +60,38 @@ const NewMovie = () => {
       <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
         Recent Movies
       </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
-        {filtered.map((movie, movi) => (
-          <motion.div
-            className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300  md:ml-4"
-            animate={{}}
-            key={movi}
-            transition={{}}
-            whileHover={{ scale: 0.95 }}
-            onClick={() => navigate(`/movie/${movie._id}`)}
-          >
-            <img
-              src={movie?.image}
-              alt={movie?.title}
-              className="rounded-tr-lg rounded-tl-lg object-fill h-56 sm:h-60 md:h-60 w-full"
-            />
-            <p className="font-bold md:text-lg text-sm px-2 pt-2">
-              {movie?.title}
-            </p>
-            <p className="px-2 pb-2 text-sm text-gray-800 font-medium">
-              {movie?.rating} | {movie?.genre} | {movie?.language}
-            </p>
-          </motion.div>
-        ))}
+      <div className="w-full md:px-12 px-8">
+        <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
+          Recent Movies
+        </h1>
+
+        {/* Responsive Grid: Mobile pe 2 columns, Tablet pe 3, Laptop pe 4 */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 p-4">
+          {filtered.map((movie, movi) => (
+            <motion.div
+              // md:w-50 aur md:ml-4 ko hata diya hai kyunki Grid khud width handle karta hai
+              className="w-full rounded-lg cursor-pointer border border-gray-300 overflow-hidden"
+              key={movie._id || movi}
+              whileHover={{ scale: 0.95 }}
+              onClick={() => navigate(`/movie/${movie._id}`)}
+            >
+              <img
+                src={movie?.image}
+                alt={movie?.title}
+                // object-cover image ko stretch nahi hone dega
+                className="rounded-t-lg object-cover h-56 sm:h-60 md:h-60 w-full"
+              />
+              <div className="p-2">
+                <p className="font-bold md:text-lg text-sm truncate">
+                  {movie?.title}
+                </p>
+                <p className="text-sm text-gray-800 font-medium">
+                  {movie?.rating} | {movie?.genre} | {movie?.language}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
