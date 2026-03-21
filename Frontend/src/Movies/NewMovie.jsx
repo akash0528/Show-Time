@@ -63,7 +63,7 @@ const NewMovie = () => {
       <div className="grid grid-cols-2 gap-6 p-4 md:flex md:gap-4">
         {filtered.map((movie, movi) => (
           <motion.div
-            className="w-full md:w-50 rounded-lg cursor-pointer border border-gray-300  md:ml-4"
+            className="w-full rounded-lg cursor-pointer border border-gray-300 overflow-hidden"
             animate={{}}
             key={movi}
             transition={{}}
@@ -73,7 +73,7 @@ const NewMovie = () => {
             <img
               src={movie?.image}
               alt={movie?.title}
-              className="rounded-tr-lg rounded-tl-lg object-fill h-56 sm:h-60 md:h-60 w-full"
+              className="w-full aspect-2/3 object-cover rounded-t-lg"
             />
             <p className="font-bold md:text-lg text-sm px-2 pt-2">
               {movie?.title}
