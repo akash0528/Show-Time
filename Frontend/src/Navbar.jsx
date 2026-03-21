@@ -19,7 +19,7 @@ const Navbar = () => {
           transition={{ repeat: Infinity, duration: 1.2, ease: "easeIn" }}
           src={logo}
           alt="logo"
-          className="hidden rounded-full w-16 h-12  md:w-30 md:h-14"
+          className="rounded-full w-16 h-12  md:w-30 md:h-14"
         />
 
         {/* Menu For Both Desktop & Mobile */}
