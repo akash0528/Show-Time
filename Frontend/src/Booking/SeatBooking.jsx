@@ -31,14 +31,6 @@ const SeatBooking = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <p className="min-h-screen text-center text-xl">
-        <ClipLoader loading={true} />
-      </p>
-    );
-  }
-
   useEffect(() => {
     fetchMovies();
   }, [id]);
@@ -79,6 +71,14 @@ const SeatBooking = () => {
       toast.error("Ticket Not Booked");
     }
   };
+
+  if (loading) {
+    return (
+      <p className="min-h-screen text-center text-xl">
+        <ClipLoader loading={true} />
+      </p>
+    );
+  }
 
   if (!movieDetail) {
     return <p className="text-center text-xl">Loading...</p>;
