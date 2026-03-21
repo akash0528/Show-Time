@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
+import { ClipLoader } from "react-spinners";
 
 const rows = ["A", "B", "C", "D"];
 const cols = 8;
