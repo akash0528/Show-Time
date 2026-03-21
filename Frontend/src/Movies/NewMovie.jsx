@@ -56,13 +56,13 @@ const NewMovie = () => {
   }
 
   return (
-    <div className="w-full md:px-12 px-8">
+    <div className="w-full md:px-12 px-4">
       <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
         Recent Movies
       </h1>
       <div className="grid grid-cols-2 gap-6 p-4 md:flex md:gap-4">
         {filtered.map((movie, movi) => (
-          <div
+          <motion.div
             className="w-full rounded-lg cursor-pointer border border-gray-300 overflow-hidden"
             animate={{}}
             key={movi}
@@ -81,7 +81,7 @@ const NewMovie = () => {
             <p className="px-2 pb-2 text-sm text-gray-800 font-medium">
               {movie?.rating} | {movie?.genre} | {movie?.language}
             </p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
