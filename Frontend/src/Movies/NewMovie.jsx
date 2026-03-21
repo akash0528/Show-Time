@@ -57,7 +57,7 @@ const NewMovie = () => {
 
   return (
     <div className="w-full md:px-12 px-2">
-      <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
+      <h1 className="font-bold px-6 text-2xl md:text-3xl pt-4">
         Recent Movies
       </h1>
       <div className="grid grid-cols-2 gap-6 p-4 md:flex md:gap-4">
@@ -67,7 +67,7 @@ const NewMovie = () => {
             animate={{}}
             key={movi}
             transition={{}}
-            whileHover={{ scale: 0.95 }}
+            whileHover={{ scale: 0.8 }}
             onClick={() => navigate(`/movie/${movie._id}`)}
           >
             <img
