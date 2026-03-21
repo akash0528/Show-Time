@@ -56,7 +56,7 @@ const NewMovie = () => {
   }
 
   return (
-    <div className="w-full md:px-12 px-4">
+    <div className="w-full md:px-12 px-2">
       <h1 className="font-bold px-6 md:text-3xl text-2xl pt-4">
         Recent Movies
       </h1>
