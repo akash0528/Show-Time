@@ -43,7 +43,6 @@ const EditActivity = () => {
 
         const activity = res.data.activity || res.data;
 
-        // ✅ FORMAT DATE FOR INPUT TYPE="date"
         const formattedDate = activity.date
           ? new Date(activity.date).toISOString().split("T")[0]
           : "";

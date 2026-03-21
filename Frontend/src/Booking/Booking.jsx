@@ -40,16 +40,13 @@ const Booking = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
-      {/* --- Main Wrapper Div (Laptop & Mobile shared) --- */}
       <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg border overflow-hidden">
-        {/* Title Section (Aapke original design ke mutabik div ke andar) */}
         <div className="p-4 md:p-6 border-b">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800">
             My Bookings
           </h2>
         </div>
 
-        {/* --- LAPTOP VIEW (Table) --- */}
         <div className="hidden md:block overflow-x-auto w-full">
           <table className="w-full text-sm text-left border-collapse">
             <thead className="bg-red-600 text-white uppercase text-xs tracking-wider">
@@ -105,7 +102,6 @@ const Booking = () => {
           </table>
         </div>
 
-        {/* --- MOBILE VIEW (Cards inside the same main white div) --- */}
         <div className="md:hidden bg-gray-50 p-4 space-y-4">
           {booking.map((ticket, index) => (
             <div

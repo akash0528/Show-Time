@@ -17,7 +17,7 @@ const Topbar = ({ title }) => {
 
     try {
       const res = await axios.put(
-        "https://show-time-backend.onrender.com/auth/updated-avatar", // apna backend URL daal
+        "https://show-time-backend.onrender.com/auth/updated-avatar",
         formData,
         {
           headers: {

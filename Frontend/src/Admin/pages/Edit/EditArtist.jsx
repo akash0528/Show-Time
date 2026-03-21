@@ -15,7 +15,7 @@ const EditArtist = () => {
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [preview, setPreview] = useState(null); // ✅ null (NOT "")
+  const [preview, setPreview] = useState(null);
 
   const [formData, setFormData] = useState({
     artistName: "",

@@ -48,7 +48,6 @@ const AddEvent = () => {
     setPreview(URL.createObjectURL(file)); // ✅ PREVIEW
   };
 
-  // CLEAN OBJECT URL (best practice)
   useEffect(() => {
     return () => {
       if (preview) URL.revokeObjectURL(preview);
