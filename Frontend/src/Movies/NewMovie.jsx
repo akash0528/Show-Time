@@ -62,7 +62,7 @@ const NewMovie = () => {
       </h1>
       <div className="grid grid-cols-2 gap-6 p-4 md:flex md:gap-4">
         {filtered.map((movie, movi) => (
-          <motion.div
+          <div
             className="w-full rounded-lg cursor-pointer border border-gray-300 overflow-hidden"
             animate={{}}
             key={movi}
@@ -81,7 +81,7 @@ const NewMovie = () => {
             <p className="px-2 pb-2 text-sm text-gray-800 font-medium">
               {movie?.rating} | {movie?.genre} | {movie?.language}
             </p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
