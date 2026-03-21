@@ -54,7 +54,7 @@ const ActivityNav = () => {
 
     try {
       const res = await axios.post(
-        "/auth/bookings",
+        "https://show-time-backend.onrender.com/auth/bookings",
         {
           item: id,
           itemType: "AdminActivity",
